@@ -28,8 +28,6 @@ namespace Scene01
             this.transform.position = noiseForce.centerPos + noise * noisePower;
 
             this.transform.LookAt(lookat.transform);
-
-
         }
     }
 }
