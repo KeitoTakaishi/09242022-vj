@@ -501,10 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe3e1414de67b343a6eaa1306abab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emitterTriggerType: 2
+  emitterTriggerType: 1
   srcObject: {fileID: 7067977670428359407, guid: 872e77617554a3c40850410c9794598b,
     type: 3}
-  emitThreshould: 0.75
+  emitThreshould: 0.85
   initPosition: {x: 0, y: 5, z: 0}
 --- !u!1 &329632830
 GameObject:

@@ -119,6 +119,11 @@ public class OSCReciever : MonoBehaviour
     private static float _s3Vfxtrail;
     private static float _s3Vfxbox;
     private static float _s3ScanMesh;
+    private static float _s3ReactiveCamera;
+    private static float _s3ShortCamera;
+    private static float _s3CamMove;
+
+
 
     public static float S3Vfxtrail
     {
@@ -132,6 +137,21 @@ public class OSCReciever : MonoBehaviour
     public static float S3ScanMesh
     {
         get { return _s3ScanMesh; }
+    }
+
+    public static float SReactiveCaemra
+    {
+        get { return _s3ReactiveCamera; }
+    }
+
+    public static float S3ShortCamera
+    {
+        get { return _s3ShortCamera; }
+    }
+
+    public static float S3CamMove
+    {
+        get { return _s3CamMove; }
     }
 
     #endregion
@@ -238,6 +258,8 @@ public class OSCReciever : MonoBehaviour
 
 
 
+
+
         #region scene1
         server.MessageDispatcher.AddCallback(
            "/s1Vfxtrail",
@@ -321,6 +343,34 @@ public class OSCReciever : MonoBehaviour
           {
               var _ = data.GetElementAsString(0);
               _s3ScanMesh = float.Parse(_);
+          }
+      );
+
+        server.MessageDispatcher.AddCallback(
+           "/s3ReactiveCamera",
+           (string address, OscDataHandle data) =>
+           {
+               var _ = data.GetElementAsString(0);
+               _s3ReactiveCamera = float.Parse(_);
+           }
+       );
+
+        server.MessageDispatcher.AddCallback(
+          "/s3ShortCamera",
+          (string address, OscDataHandle data) =>
+          {
+              var _ = data.GetElementAsString(0);
+              _s3ShortCamera = float.Parse(_);
+          }
+      );
+
+
+        server.MessageDispatcher.AddCallback(
+          "/s3CamMove",
+          (string address, OscDataHandle data) =>
+          {
+              var _ = data.GetElementAsString(0);
+              _s3CamMove = float.Parse(_);
           }
       );
 

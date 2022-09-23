@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         if (this != Instance)
         {
             Destroy(this.gameObject);

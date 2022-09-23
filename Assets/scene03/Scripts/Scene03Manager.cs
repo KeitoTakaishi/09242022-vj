@@ -8,6 +8,14 @@ namespace Scene03
 {
     public class Scene03Manager : MonoBehaviour
     {
+        [SerializeField] GameObject reactiveCamera;
+        
+
+        [SerializeField] GameObject shortCamera;
+        [SerializeField] GameObject reactiveCameraVolume;
+        [SerializeField] GameObject shortCameraVolume;
+
+
         [SerializeField] GameObject crawlSDFVFXGraphObject;
         [SerializeField] GameObject crawlTrailVFXGraphObject;
         VisualEffect crawlSDFVFXGraph;
@@ -29,6 +37,7 @@ namespace Scene03
         void Update()
         {
             SwitchVFX();
+            SwitchCaemra();
         }
 
         void SwitchVFX()
@@ -36,7 +45,7 @@ namespace Scene03
             if (OSCReciever.S3Vfxbox > 0.0f) {
                 //crawlSDFVFXGraphAlive = !crawlSDFVFXGraphAlive;
                 crawlSDFVFXGraphObject.SetActive(true);
-                crawlTrailVFXGraph.SetFloat("_scale", OSCReciever.S3Vfxbox);
+                crawlSDFVFXGraph.SetFloat("_Scale", OSCReciever.S3Vfxbox);
             }
             else {
                 crawlSDFVFXGraphObject.SetActive(false);
@@ -48,12 +57,35 @@ namespace Scene03
             {
                 //crawlTrailVFXGraphAlive = !crawlTrailVFXGraphAlive;
                 crawlTrailVFXGraphObject.SetActive(true);
-                crawlTrailVFXGraph.SetFloat("_scale", OSCReciever.S3Vfxtrail);
+                crawlTrailVFXGraph.SetFloat("_Scale", OSCReciever.S3Vfxtrail);
             }
             else
             {
                 crawlTrailVFXGraphObject.SetActive(false);
             }
+        }
+
+
+        void SwitchCaemra()
+        {
+            if(OSCReciever.SReactiveCaemra == 1.0f)
+            {
+                reactiveCamera.SetActive(true);
+                reactiveCameraVolume.SetActive(true);
+                shortCamera.SetActive(false);
+                shortCameraVolume.SetActive(false);
+
+            }
+           
+
+            if (OSCReciever.S3ShortCamera == 1.0f)
+            {
+                shortCamera.SetActive(true);
+                shortCameraVolume.SetActive(true);
+                reactiveCamera.SetActive(false);
+                reactiveCameraVolume.SetActive(false);
+            }
+          
         }
     }
 
