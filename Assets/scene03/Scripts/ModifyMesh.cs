@@ -83,7 +83,8 @@ namespace Scene03
         {
             if (scanDone)
             {
-                mesh.SetIndices(index.ToArray(), MeshTopology.Triangles, 0);
+                //mesh.SetIndices(index.ToArray(), MeshTopology.Triangles, 0);
+                mesh.SetIndices(index.ToArray(), MeshTopology.LineStrip, 0);
             }
             else
             {

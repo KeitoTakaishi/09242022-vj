@@ -29,7 +29,7 @@ public class SceneController : MonoBehaviour
         else if (OSCReciever.SceneID == 2)
         {
 
-            if (SceneManager.GetActiveScene().name != "Scene02") ToScene2();
+            if (SceneManager.GetActiveScene().name != "scene02") ToScene2();
         }
 
         else if (OSCReciever.SceneID == 3)
@@ -48,7 +48,7 @@ public class SceneController : MonoBehaviour
     }
     public static void ToScene2()
     {
-        SceneManager.LoadScene("Scene02");
+        SceneManager.LoadScene("scene02");
     }
 
     public static void ToScene3()

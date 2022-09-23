@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Scene02Manager : MonoBehaviour
 {
 
 
-    [SerializeField] GameObject upTurbVFXGraph;
+    [SerializeField] GameObject upTurbVFXGraphObject;
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject shortFocusCamera;
     [SerializeField] GameObject mainVolume;
     [SerializeField] GameObject shortFocusVolume;
 
+    [SerializeField] GameObject emitterTriangle;
+    [SerializeField] GameObject emitterBox;
 
 
     #region camera
@@ -22,14 +25,14 @@ public class Scene02Manager : MonoBehaviour
     #endregion
 
     #region vfx
-    bool upTurbVFXGraphAlive = false;
+    VisualEffect upTurbVFXGraph;
     #endregion
 
 
 
     void Start()
     {
-        
+        upTurbVFXGraph = upTurbVFXGraphObject.GetComponent<VisualEffect>();
     }
 
     void Update()
@@ -41,13 +44,13 @@ public class Scene02Manager : MonoBehaviour
 
     void CameraSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (OSCReciever.S2ZoomCamera == 1.0f)
         {
             mainCameraAlive = true;
             mainVolumeAlive = true;
             shortFocusCameraAlive = false;
             shortFocusVolumeAlive = false;
-        }else if (Input.GetKeyDown(KeyCode.W))
+        }else if (OSCReciever.S2ShortCamera == 1.0f)
         {
             mainCameraAlive = false;
             mainVolumeAlive = false;
@@ -59,14 +62,39 @@ public class Scene02Manager : MonoBehaviour
 
         shortFocusCamera.SetActive(shortFocusCameraAlive);
         shortFocusVolume.SetActive(shortFocusVolumeAlive);
+
+
+
+
+        if (OSCReciever.S2EmitterTriangle == 1.0f)
+        {
+            emitterTriangle.SetActive(true);
+        }
+        else
+        {
+            emitterTriangle.SetActive(false);
+        }
+
+        if (OSCReciever.S2EmitterBox == 1.0f)
+        {
+            emitterBox.SetActive(true);
+        }
+        else
+        {
+            emitterBox.SetActive(false);
+        }
     }
 
     void VFXSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (OSCReciever.S2Vfxtrail > 0.0f)
         {
-            upTurbVFXGraphAlive = !upTurbVFXGraphAlive;
-            upTurbVFXGraph.SetActive(upTurbVFXGraphAlive);
+            upTurbVFXGraphObject.SetActive(true);
+            upTurbVFXGraph.SetFloat("_Scale", OSCReciever.S2Vfxtrail);
+        }
+        else
+        {
+            upTurbVFXGraphObject.SetActive(false);
         }
     }
 }
