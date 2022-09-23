@@ -10223,7 +10223,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.02500000037252903,"y":0.02500000037252903,"z":0.02500000037252903}'
+      m_SerializableObject: '{"x":0.019999999552965165,"y":0.019999999552965165,"z":0.019999999552965165}'
     m_Space: 2147483647
   m_Property:
     name: Scale
