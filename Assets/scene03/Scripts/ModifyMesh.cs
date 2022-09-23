@@ -58,7 +58,7 @@ namespace Scene03
 
         void scanVertex()
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (OSCReciever.S3ScanMesh == 1.0f)
             {
                 RemoveIndex();
             }

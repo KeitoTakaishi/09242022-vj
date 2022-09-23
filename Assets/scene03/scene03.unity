@@ -2588,5 +2588,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800e31c4694057a4480038cad5260c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crawlSDFVFXGraph: {fileID: 1815887793}
-  crawlTrailVFXGraph: {fileID: 1758795124}
+  crawlSDFVFXGraphObject: {fileID: 1815887793}
+  crawlTrailVFXGraphObject: {fileID: 1758795124}

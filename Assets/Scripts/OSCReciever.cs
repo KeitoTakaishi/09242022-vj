@@ -114,6 +114,29 @@ public class OSCReciever : MonoBehaviour
     #endregion
 
 
+
+    #region scene3
+    private static float _s3Vfxtrail;
+    private static float _s3Vfxbox;
+    private static float _s3ScanMesh;
+
+    public static float S3Vfxtrail
+    {
+        get { return _s3Vfxtrail; }
+    }
+    public static float S3Vfxbox
+    {
+        get { return _s3Vfxbox; }
+    }
+
+    public static float S3ScanMesh
+    {
+        get { return _s3ScanMesh; }
+    }
+
+    #endregion
+
+
     private void Awake()
     {
         if (this != Instance)
@@ -273,6 +296,35 @@ public class OSCReciever : MonoBehaviour
         #endregion
 
 
+        #region scene3
+        server.MessageDispatcher.AddCallback(
+           "/s3Vfxtrail",
+           (string address, OscDataHandle data) =>
+           {
+               var _ = data.GetElementAsString(0);
+               _s3Vfxtrail = float.Parse(_);
+           }
+       );
+
+        server.MessageDispatcher.AddCallback(
+           "/s3Vfxbox",
+           (string address, OscDataHandle data) =>
+           {
+               var _ = data.GetElementAsString(0);
+               _s3Vfxbox = float.Parse(_);
+           }
+       );
+
+        server.MessageDispatcher.AddCallback(
+          "/s3ScanMesh",
+          (string address, OscDataHandle data) =>
+          {
+              var _ = data.GetElementAsString(0);
+              _s3ScanMesh = float.Parse(_);
+          }
+      );
+
+        #endregion
 
     }
 }

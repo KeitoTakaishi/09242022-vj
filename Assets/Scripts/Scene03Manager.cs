@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 
 namespace Scene03
 {
     public class Scene03Manager : MonoBehaviour
     {
-        [SerializeField] GameObject crawlSDFVFXGraph;
-        [SerializeField] GameObject crawlTrailVFXGraph;
+        [SerializeField] GameObject crawlSDFVFXGraphObject;
+        [SerializeField] GameObject crawlTrailVFXGraphObject;
+        VisualEffect crawlSDFVFXGraph;
+        VisualEffect crawlTrailVFXGraph;
+
 
 
         #region vfx
@@ -18,7 +22,8 @@ namespace Scene03
         #endregion
         void Start()
         {
-
+            crawlSDFVFXGraph = crawlSDFVFXGraphObject.GetComponent<VisualEffect>();
+            crawlTrailVFXGraph = crawlTrailVFXGraphObject.GetComponent<VisualEffect>();
         }
 
         void Update()
@@ -28,13 +33,26 @@ namespace Scene03
 
         void SwitchVFX()
         {
-            if (Input.GetKeyDown(KeyCode.Q)){
-                crawlSDFVFXGraphAlive = !crawlSDFVFXGraphAlive;
-                crawlSDFVFXGraph.SetActive(crawlSDFVFXGraphAlive);
+            if (OSCReciever.S3Vfxbox > 0.0f) {
+                //crawlSDFVFXGraphAlive = !crawlSDFVFXGraphAlive;
+                crawlSDFVFXGraphObject.SetActive(true);
+                crawlTrailVFXGraph.SetFloat("_scale", OSCReciever.S3Vfxbox);
             }
-            else if (Input.GetKeyDown(KeyCode.W)){
-                crawlTrailVFXGraphAlive = !crawlTrailVFXGraphAlive;
-                crawlTrailVFXGraph.SetActive(crawlTrailVFXGraphAlive);
+            else {
+                crawlSDFVFXGraphObject.SetActive(false);
+            }
+
+            
+
+            if (OSCReciever.S3Vfxtrail > 0.0f)
+            {
+                //crawlTrailVFXGraphAlive = !crawlTrailVFXGraphAlive;
+                crawlTrailVFXGraphObject.SetActive(true);
+                crawlTrailVFXGraph.SetFloat("_scale", OSCReciever.S3Vfxtrail);
+            }
+            else
+            {
+                crawlTrailVFXGraphObject.SetActive(false);
             }
         }
     }
